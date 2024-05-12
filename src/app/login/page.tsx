@@ -35,7 +35,6 @@ const LoginPage = () => {
                 verifyGoogleToken
             );
         }
-
         console.log(verifyGoogleToken);
         toast.success("Account verified.");
     };
