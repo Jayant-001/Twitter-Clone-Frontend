@@ -1,9 +1,10 @@
 import CreatePost from "@/components/CreatePost";
 import Posts from "@/components/post/Posts";
+import { cookies } from "next/headers";
 
 export default function Home() {
     const backend_url = process.env.BACKEND_HOST;
-    console.log("backend url", backend_url);
+    console.log(" cookie in home", cookies().get("twitter_token")?.value);
 
     return (
         <div className="flex-[4_4_0] mr-auto border-r border-gray-700 min-h-screen">

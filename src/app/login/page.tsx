@@ -1,6 +1,12 @@
+
+
 import XSvg from "@/components/svgs/X";
+import { VerifyTokenQuery } from "@/gql/graphql";
+import { gqlClient } from "@/graphql/gqlClient";
+import { verifyGoogleTokenQuery } from "@/graphql/query/user";
+import { CredentialResponse, GoogleLogin } from "@react-oauth/google";
 import Link from "next/link";
-import React from "react";
+import toast from "react-hot-toast";
 import { MdOutlineMail, MdPassword } from "react-icons/md";
 
 const LoginPage = () => {
@@ -10,6 +16,28 @@ const LoginPage = () => {
 
     const error = {
         message: "error message",
+    };
+
+    const handleGoogleLogin = async (cred: CredentialResponse) => {
+        const googleToken = cred.credential;
+        if (!googleToken) return toast.error("Authentication falied");
+
+        const { verifyGoogleToken } = await gqlClient.request<VerifyTokenQuery>(
+            verifyGoogleTokenQuery,
+            {
+                token: googleToken,
+            }
+        );
+
+        if (verifyGoogleToken) {
+            window.localStorage.setItem(
+                "__twitter__token__",
+                verifyGoogleToken
+            );
+        }
+
+        console.log(verifyGoogleToken);
+        toast.success("Account verified.");
     };
 
     return (
@@ -58,11 +86,12 @@ const LoginPage = () => {
                     <p className="text-white text-lg">
                         {"Don't"} have an account?
                     </p>
-                    <Link href="/signup">
-                        <button className="btn rounded-full btn-primary text-white btn-outline w-full">
-                            Sign up
-                        </button>
-                    </Link>
+                    <GoogleLogin
+                        onSuccess={handleGoogleLogin}
+                        onError={() => {
+                            toast("Login failed");
+                        }}
+                    />
                 </div>
             </div>
         </div>
