@@ -7,9 +7,7 @@ import Link from "next/link";
 import XSvg from "../svgs/X";
 import Image from "next/image";
 
-type Props = {};
-
-const SideBar = (props: Props) => {
+const SideBar = () => {
     return (
         <div className="md:flex-[2_2_0] w-18 max-w-52">
             <div className="sticky top-0 left-0 h-screen flex flex-col border-r border-gray-700 w-20 md:w-full">

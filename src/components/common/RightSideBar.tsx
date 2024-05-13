@@ -29,6 +29,7 @@ const RightSideBar = () => {
                 "https://tinypng.com/static/images/george-account-page.webp",
         },
     ];
+    
 
     return (
         <div className="hidden lg:block my-4 mx-2">
