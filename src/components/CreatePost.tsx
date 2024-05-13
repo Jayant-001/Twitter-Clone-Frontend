@@ -25,7 +25,7 @@ const CreatePost = () => {
             </div>
             <form className="flex flex-col gap-2 w-full" onSubmit={() => {}}>
                 <textarea
-                    className="textarea w-full p-2 text-lg resize-none border-none focus:outline-none  border-gray-800 rounded-xl"
+                    className="textarea w-full bg-slate-300 p-2 text-lg resize-none border-none focus:outline-none  border-gray-800 rounded-xl"
                     placeholder="What is happening?!"
                     value={text}
                     rows={4}
@@ -47,7 +47,7 @@ const CreatePost = () => {
                         <BsEmojiSmileFill className="fill-primary w-5 h-5 cursor-pointer" />
                     </div>
                     <input type="file" accept="image/*" hidden />
-                    <button className="btn btn-primary rounded-full btn-sm text-white px-4">
+                    <button className="btn btn-primary rounded-full border bg-slate-300 hover:bg-slate-500 btn-sm  px-4">
                         {false ? "Posting..." : "Post"}
                     </button>
                 </div>
